@@ -16,7 +16,7 @@ import contact from "../assets/contact.png"
 
 
 const ContactUs = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, watch } = useForm();
   
     const googleFormUrl = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSf3_4nAOlIG-4K60p8Mo6sBV5AK2S-uXRJh22cw0fMFZS7X2w/formResponse";
   
@@ -68,7 +68,9 @@ const ContactUs = () => {
     setShow(false);
   };
 
+  const consentChecked = watch("consent");
   return (
+    
     <>
       <NavBar transparent />
 
@@ -220,71 +222,99 @@ const ContactUs = () => {
           </div>
         </div>
 
-        <div
-          data-aos="fade-up"
-          data-aos-duration="1600"
-          className="lg:w-[60%] px-10 py-5 shadow-xl border-t-[3px] border-b-[3px] border-red-600"
-        >
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="md:flex gap-6">
-              <div className="md:w-[50%]">
-                <div>
-                  <label htmlFor="name">Name</label>
-                  <input
-                    {...register("name", { required: true })}
-                    type="text"
-                    id="name"
-                    placeholder="John Doe"
-                    className="w-full h-10 px-3 my-3 rounded border border-zinc-300 focus:border focus:border-red-600 outline-none"
-                  />
-                </div>
-              </div>
+       <div
+  data-aos="fade-up"
+  data-aos-duration="1600"
+  className="lg:w-[60%] px-10 py-5 shadow-xl border-t-[3px] border-b-[3px] border-red-600"
+>
+  <form onSubmit={handleSubmit(onSubmit)}>
+    <div className="md:flex gap-6">
+      <div className="md:w-[50%]">
+        <label htmlFor="name">Name</label>
+        <input
+          {...register("name", { required: true })}
+          type="text"
+          id="name"
+          placeholder="John Doe"
+          className="w-full h-10 px-3 my-3 rounded border border-zinc-300 focus:border-red-600 outline-none"
+        />
+      </div>
 
-              <div className="md:w-[50%]">
-                <div>
-                  <label htmlFor="email">Your Email</label>
-                  <input
-                    {...register("email", { required: true })}
-                    type="email"
-                    id="email"
-                    placeholder="johndoe@gmail.com"
-                    className="w-full h-10 px-3 my-3 rounded border border-zinc-300 focus:border focus:border-red-600 outline-none"
-                  />
-                </div>
-              </div>
-            </div>
+      <div className="md:w-[50%]">
+        <label htmlFor="email">Your Email</label>
+        <input
+          {...register("email", { required: true })}
+          type="email"
+          id="email"
+          placeholder="johndoe@gmail.com"
+          className="w-full h-10 px-3 my-3 rounded border border-zinc-300 focus:border-red-600 outline-none"
+        />
+      </div>
+    </div>
 
-            <div>
-              <label htmlFor="subject">Subject</label>
-              <input
-                {...register("subject", { required: true })}
-                type="text"
-                id="subject"
-                placeholder="Your subject"
-                className="w-full h-10 px-3 my-3 rounded border border-zinc-300 focus:border focus:border-red-600 outline-none"
-              />
-            </div>
+    <div>
+      <label htmlFor="subject">Subject</label>
+      <input
+        {...register("subject", { required: true })}
+        type="text"
+        id="subject"
+        placeholder="Your subject"
+        className="w-full h-10 px-3 my-3 rounded border border-zinc-300 focus:border-red-600 outline-none"
+      />
+    </div>
 
-            <div>
-              <label htmlFor="message">Message</label>
-              <textarea
-                {...register("message", { required: true })}
-                id="message"
-                placeholder="Enter your message"
-                className="w-full h-60 p-3 my-3 rounded border border-zinc-300 focus:border focus:border-red-600 outline-none resize-none"
-              ></textarea>
-            </div>
+    <div>
+      <label htmlFor="message">Message</label>
+      <textarea
+        {...register("message", { required: true })}
+        id="message"
+        placeholder="Enter your message"
+        className="w-full h-60 p-3 my-3 rounded border border-zinc-300 focus:border-red-600 outline-none resize-none"
+      ></textarea>
+    </div>
 
-            <div className="flex flex-col justify-center sm:flex-row items-center mb-12 lg:mb-0 lg:flex-row gap-10 mt-10">
-            <button
-              className="bg-red-600 text-white py-3 px-5 rounded-xl text-md transition-all duration-300 transform hover:bg-red-800 hover:scale-105 hover:shadow-lg"
-              onClick={videoStartHandler} 
-            >
-              SEND MESSAGE
-            </button>
-            </div>
-          </form>
-        </div>
+    {/* Consent Checkbox */}
+    <div className="mt-4">
+      <div className="flex items-start gap-2">
+        <input
+          type="checkbox"
+          {...register("consent", { required: true })}
+          className="mt-1 w-4 h-4 accent-red-600 cursor-pointer"
+        />
+        <p className="text-sm text-gray-600 leading-relaxed">
+          I agree to be contacted by{" "}
+          <span className="font-semibold text-[#7A6960]">
+            RankMantra
+          </span>{" "}
+          via WhatsApp, SMS, RCS, Email, or Phone regarding my enquiry and related
+          services. I also agree to the{" "}
+          <a href="/terms-and-conditions" className="text-red-600 underline">
+            Terms & Conditions
+          </a>{" "}
+          and{" "}
+          <a href="/privacy-policy" className="text-red-600 underline">
+            Privacy Policy
+          </a>.
+        </p>
+      </div>
+    </div>
+
+  {/* Submit Button */}
+  <div className="flex flex-col justify-center sm:flex-row items-center mt-8">
+    <button
+      type="submit"
+      disabled={!consentChecked}
+      className={`py-3 px-5 rounded-xl text-md transition-all duration-300 transform
+        ${consentChecked 
+          ? "bg-red-600 text-white hover:bg-red-800 hover:scale-105 hover:shadow-lg" 
+          : "bg-gray-400 text-white cursor-not-allowed"
+        }`}
+    >
+      SEND MESSAGE
+    </button>
+  </div>
+</form>
+</div>
       </div>
           </div>
     {/* </section> */}

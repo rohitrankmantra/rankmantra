@@ -36,6 +36,8 @@ import Shopify from "../src/pages/Shopify";
 import Wordpress from "../src/pages/Wordpress";
 import WixDevelopment from "../src/pages/WixDevelopment";
 // import Gallery from "../src/pages/Gallery";
+import PrivacyPolicy from "../src/pages/PrivacyPolicy";
+import TermsAndConditions from "../src/pages/TermsAndConditions";
 
 
 
@@ -71,6 +73,8 @@ const Routings = () => {
         <Route path="/shopify-development" element={<Shopify />} />
         <Route path="/wordpress-development" element={<Wordpress />} />
         <Route path="/wix-development" element={<WixDevelopment />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
 
         <Route path="/portfolio/">
           <Route path="web1" element={<ProductsTemp />} />

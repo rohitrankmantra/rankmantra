@@ -498,7 +498,7 @@ export default function AboutUs() {
 
 
       </main>
-      <section className="w-full max-h-fit py-16 lg:px-30 overflow-hidden border-b border-orange-100 relative mt-6">
+      <section className="w-full max-h-auto py-4 lg:px-30 overflow-hidden border-b border-orange-100 relative mt-6">
   <div className="absolute inset-0 bg-cover bg-center opacity-10 z-0" style={{ backgroundImage: 'url(https://images.pexels.com/photos/267401/pexels-photo-267401.jpeg)' }}></div>
   <div className="relative z-10">
     <Footer />
