@@ -127,7 +127,7 @@ const ContactUs = () => {
             style={{color:"#7a6960"}}
             >Contact Us</h1>
             <p className="mb-3 text-md text-gray-600 opacity-100">
-            info@dnddevelopment.net
+            info@rankmantra.com
             +91-8979249912
             </p>
             
